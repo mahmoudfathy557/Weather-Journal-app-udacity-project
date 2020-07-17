@@ -21,7 +21,7 @@ app.use(cors())
 
 // Initialize the main project folder
 app.use(express.static('website'))
-const port = 8080
+const port = 3000
 
 //Spin up the server
 const server = app.listen(port, listening)
@@ -29,7 +29,7 @@ const server = app.listen(port, listening)
 // Callback to debug
 function listening() {
   console.log('server running')
-  console.log(`running on localhost: ${port}`)
+  console.log(`server is running on localhost: ${port}`)
 }
 
 //GET route that returns the projectData object
@@ -40,12 +40,13 @@ function sendData(request, response) {
 }
 
 // POST route
-app.post('/projectData', addData)
+app.post('/projectData', postData)
 
-function addData(request, response) {
+function postData(request, response) {
   projectData.temperature = request.body.temperature
   projectData.date = request.body.date
   projectData.user_response = request.body.user_response
   response.end()
   console.log(projectData)
 }
+console.log('done')
